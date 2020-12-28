@@ -1061,18 +1061,112 @@ export const Newegg: Store = {
 			series: 'darkhero',
 			url:
 				'https://www.newegg.com/asus-rog-crosshair-viii-dark-hero/p/N82E16813119362'
+		},
+		{
+			brand: 'gigabyte',
+			itemNumber: '14-932-367_combo',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4191565%7C1',
+			model: 'eagle',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4191565&quicklink=true'
+		},
+		{
+			brand: 'msi',
+			itemNumber: '14-137-597_combo',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4207521%7C1',
+			model: 'gaming x trio',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4207521&quicklink=true'
+		},
+		{
+			brand: 'msi',
+			itemNumber: '14-137-597_combo',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4211864%7C1',
+			model: 'gaming x trio',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4211864'
+		},
+		{
+			brand: 'msi',
+			itemNumber: '14-137-598_combo',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4212336%7C1',
+			model: 'ventus 3x oc',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4212336'
+		},
+		{
+			brand: 'msi',
+			itemNumber: '14-137-598_combo',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4211888%7C1',
+			model: 'ventus 3x oc',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4211888'
+		},
+		{
+			brand: 'gigabyte',
+			itemNumber: '14-932-330_combo',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4190359%7C1',
+			model: 'eagle oc',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4190359'
+		},
+		{
+			brand: 'gigabyte',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4190357%7C1',
+			itemNumber: '14-932-329_combo',
+			model: 'gaming oc',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4190357'
+		},
+		{
+			brand: 'gigabyte',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=Combo.4190363%7C1',
+			itemNumber: '14-932-337_combo',
+			model: 'vision oc',
+			series: '3080_combo',
+			url:
+				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4190363'
 		}
 	],
 	name: 'newegg',
 	realTimeInventoryLookup: async (itemNumber: string) => {
+		let combo = false;
+		if(itemNumber !== undefined) {
+			let comboSplit = itemNumber.split('_');
+			itemNumber = comboSplit[0];
+			combo = comboSplit[1] === 'combo'
+		}
+
 		const request_url =
 			'https://www.newegg.com/product/api/ProductRealtime?ItemNumber=' +
 			itemNumber;
 		const response = await fetch(request_url);
 		const response_json = await response.json();
-		return (
-			response_json.MainItem !== undefined &&
-			response_json.MainItem.Instock === true
-		);
+		if (!combo) {
+			return (
+				response_json.MainItem !== undefined &&
+				response_json.MainItem.Instock === true
+			);
+		} else {
+			return (
+				response_json.MainItem !== undefined &&
+				response_json.MainItem.StockForCombo === true
+			);
+		}
 	}
 };

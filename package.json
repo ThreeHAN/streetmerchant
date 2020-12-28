@@ -11,6 +11,7 @@
     "start:dev": "nodemon --config nodemon.json",
     "start:production": "node build/index.js",
     "test:notification": "npm run build && node build/__test__/notification-test.js",
+    "test:utils": "npm run build && node build/__test__/util-test.js",
     "test:notification:production": "node build/__test__/notification-test.js"
   },
   "repository": {

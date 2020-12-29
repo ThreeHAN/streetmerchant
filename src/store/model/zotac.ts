@@ -54,14 +54,14 @@ export const Zotac: Store = {
 			model: 'trinity',
 			series: '3080',
 			url:
-				'https://store.zotac.com/zotac-gaming-geforce-rtx-3080-trinity-zt-a30800d-10p'
+				'https://www.zotacstore.com/us/zotac-gaming-geforce-rtx-3080-trinity-zt-a30800d-10p'
 		},
 		{
 			brand: 'zotac',
 			model: 'trinity oc',
 			series: '3080',
 			url:
-				'https://store.zotac.com/zotac-gaming-geforce-rtx-3080-trinity-oc-zt-a30800j-10p'
+				'https://www.zotacstore.com/us/zotac-gaming-geforce-rtx-3080-trinity-oc-zt-a30800j-10p'
 		},
 		{
 			brand: 'zotac',
@@ -75,7 +75,7 @@ export const Zotac: Store = {
 			model: 'trinity',
 			series: '3090',
 			url:
-				'https://store.zotac.com/zotac-gaming-geforce-rtx-3090-trinity-zt-a30900d-10p'
+				'https://www.zotacstore.com/us/zotac-gaming-geforce-rtx-3080-amp-holo-zt-a30800f-10p'
 		}
 	],
 	name: 'zotac'

@@ -295,13 +295,17 @@ async function lookupCard(
 				: link.url;
 		logger.info(`${Print.inStock(link, store, true)}\n${givenUrl}`);
 
+		sendNotification(link, store);
+
 		if (config.browser.open) {
 			await (link.openCartAction === undefined
 				? open(givenUrl)
 				: link.openCartAction(browser));
 		}
 
-		sendNotification(link, store);
+		if(config.browser.open && link.url !== undefined) {
+			open(link.url);
+		}
 
 		if (config.page.inStockWaitTime) {
 			inStock[link.url] = true;

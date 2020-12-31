@@ -341,6 +341,7 @@ if (process.env.MAX_PRICE) {
 }
 
 const store = {
+	applySleepInsideStore: envOrBoolean(process.env.APPLY_SLEEP_BETWEEN_PRODUCTS, false),
 	autoAddToCart: envOrBoolean(process.env.AUTO_ADD_TO_CART, true),
 	country: envOrString(process.env.COUNTRY, 'usa'),
 	maxPrice: {

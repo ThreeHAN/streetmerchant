@@ -251,7 +251,6 @@ async function lookup(browser: Browser, store: Store) {
 			);
 			const client = await page.target().createCDPSession();
 			await client.send('Network.clearBrowserCookies');
-			await delayNextLookup(store);
 		}
 
 		if (pageProxy) {
@@ -304,7 +303,6 @@ async function lookupCard(
 	}
 
 	if (!isStatusCodeInRange(statusCode, successStatusCodes)) {
-		await delayNextLookup(store);
 		return statusCode;
 	}
 
@@ -341,7 +339,7 @@ async function lookupCard(
 			link.screenshot = `success-${Date.now()}.png`;
 			await page.screenshot({path: link.screenshot});
 		}
-	} else {
+	} else if(config.store.applySleepInsideStore) {
 		await delayNextLookup(store);
 	}
 
@@ -392,6 +390,10 @@ async function handleResponse(
 		} else {
 			logger.warn(Print.badStatusCode(link, store, statusCode, true));
 		}
+
+		if(config.store.applySleepInsideStore) {
+			await delayNextLookup(store);
+		}
 	}
 
 	return statusCode;
@@ -427,7 +429,6 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
 	if (store.labels.captcha) {
 		if (await pageIncludesLabels(page, store.labels.captcha, baseOptions)) {
 			logger.warn(Print.captcha(link, store, true));
-			await delay(getSleepTime(store));
 			return false;
 		}
 	}

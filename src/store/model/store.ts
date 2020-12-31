@@ -174,6 +174,7 @@ export type StatusCodeRangeArray = Array<number | [number, number]>;
 
 export type Store = {
 	realTimeInventoryLookup?: (itemNumber: string) => Promise<boolean>;
+	applySleepInsideStore?: boolean;
 	/**
 	 * The range of status codes which will trigger backoff, i.e. an increasing
 	 * delay between requests. Setting an empty array will disable the feature.

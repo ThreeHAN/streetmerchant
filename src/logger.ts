@@ -227,6 +227,16 @@ export const Print = {
 			link,
 			store
 		)} :: CLOUDFLARE RETRY LIMIT REACHED, ABORT`;
+	},
+	storeDelay(store: Store, timeInMili: number, color?: boolean): string {
+		if (color) {
+			return (
+				'i ' +
+				chalk.cyan(`[${store.name}] `) +
+				+ chalk.grey(`delay of ${(timeInMilli / 1000).toFixed(0)} seconds till next product`)
+			)
+		} else
+			return `i [${store.name}] delay of ${(timeInMilli / 1000).toFixed(0)} seconds`
 	}
 };
 

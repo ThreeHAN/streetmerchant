@@ -60,7 +60,8 @@ async function handleLowBandwidth(request: Request) {
 	if (typ === 'font' || typ === 'image') {
 		try {
 			await request.abort();
-		} catch {}
+		} catch {
+		}
 
 		return true;
 	}
@@ -79,7 +80,8 @@ async function handleProxy(request: Request, proxy?: string) {
 		logger.error('handleProxy', error);
 		try {
 			await request.abort();
-		} catch {}
+		} catch {
+		}
 	}
 
 	return true;
@@ -98,7 +100,8 @@ async function handleAdBlock(request: Request, adBlockRequestHandler: any) {
 		const abortFunc = async () => {
 			try {
 				await request.abort();
-			} catch {}
+			} catch {
+			}
 
 			resolve(true);
 		};
@@ -106,7 +109,8 @@ async function handleAdBlock(request: Request, adBlockRequestHandler: any) {
 		const respondFunc = async (response: RespondOptions) => {
 			try {
 				await request.respond(response);
-			} catch {}
+			} catch {
+			}
 
 			resolve(true);
 		};
@@ -231,7 +235,8 @@ async function lookup(browser: Browser, store: Store) {
 
 			try {
 				await request.continue();
-			} catch {}
+			} catch {
+			}
 		});
 
 		let statusCode = 0;
@@ -246,6 +251,7 @@ async function lookup(browser: Browser, store: Store) {
 			);
 			const client = await page.target().createCDPSession();
 			await client.send('Network.clearBrowserCookies');
+			await delayNextLookup(store);
 		}
 
 		if (pageProxy) {
@@ -264,6 +270,12 @@ async function lookup(browser: Browser, store: Store) {
 	/* eslint-enable no-await-in-loop */
 }
 
+async function delayNextLookup(store: Store) {
+	const storeDelay = getSleepTime(store);
+	logger.debug(Print.storeDelay(store, storeDelay, true));
+	await delay(storeDelay);
+}
+
 async function lookupCard(
 	browser: Browser,
 	store: Store,
@@ -276,15 +288,23 @@ async function lookupCard(
 	});
 
 	const successStatusCodes = store.successStatusCodes ?? [[0, 399]];
-	const statusCode = await handleResponse(
-		browser,
-		store,
-		page,
-		link,
-		response
-	);
+
+	let statusCode = 0;
+
+	try {
+		statusCode = await handleResponse(
+			browser,
+			store,
+			page,
+			link,
+			response
+		);
+	} catch (error: unknown) {
+		logger.error('handleProxy', error);
+	}
 
 	if (!isStatusCodeInRange(statusCode, successStatusCodes)) {
+		await delayNextLookup(store);
 		return statusCode;
 	}
 
@@ -303,7 +323,7 @@ async function lookupCard(
 				: link.openCartAction(browser));
 		}
 
-		if(config.browser.open && link.url !== undefined) {
+		if (config.browser.open && link.url !== undefined) {
 			open(link.url);
 		}
 
@@ -321,6 +341,8 @@ async function lookupCard(
 			link.screenshot = `success-${Date.now()}.png`;
 			await page.screenshot({path: link.screenshot});
 		}
+	} else {
+		await delayNextLookup(store);
 	}
 
 	return statusCode;

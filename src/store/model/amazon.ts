@@ -32,6 +32,70 @@ export const Amazon: Store = {
 			url: 'https://www.amazon.com/dp/B083248S3B'
 		},
 		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
+			brand: 'test:brand',
+			cartUrl:
+				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B083248S3B&Quantity.1=1',
+			model: 'test:model',
+			series: 'test:series',
+			url: 'https://www.amazon.com/Nintendo-New-3DS-Super-Mario-Black/dp/B01MFAWPRA'
+		},
+		{
 			brand: 'asus',
 			cartUrl:
 				'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08P2HBBLX&Quantity.1=1',

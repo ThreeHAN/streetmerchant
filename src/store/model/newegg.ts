@@ -1141,6 +1141,16 @@ export const Newegg: Store = {
 			series: '3080_combo',
 			url:
 				'https://www.newegg.com/Product/ComboDealDetails?ItemList=Combo.4190363'
+		},
+		{
+			brand: 'msi',
+			cartUrl:
+				'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=N82E16813144310',
+			itemNumber: '13-144-310',
+			model: 'mag',
+			series: 'tomahawk',
+			url:
+				'https://www.newegg.com/msi-mag-x570-tomahawk-wifi/p/N82E16813144310'
 		}
 	],
 	name: 'newegg',
